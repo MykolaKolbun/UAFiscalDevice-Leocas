@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE4EEFE1-69DE-44DA-8BCD-390C5516B58C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UA_EReceipt</RootNamespace>
+    <AssemblyName>UA_EReceipt</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IIT, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\Edocs.IIT.Sign.1.0.1\lib\netstandard2.0\IIT.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\Microsoft.Extensions.Configuration.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\Microsoft.Extensions.Configuration.Abstractions.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\Microsoft.Extensions.Primitives.2.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SkiData.FiscalDeviceInterface, Version=4.0.0.5, Culture=neutral, PublicKeyToken=38d638859d51b818, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\SKIDATA\SKIDATA Fiscal Device SDK V5.0\Lib\SkiData.FiscalDeviceInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\UA_Fiscal_Leocas\packages\System.Text.Encoding.CodePages.4.5.1\lib\net461\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UA_Fiscal_EReceipt.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="IITLibs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="EUSignCP\Data\CA-3DB73E7BF0D575B2010000000100000081000000.cer" />
+    <None Include="EUSignCP\Data\CA-3DB73E7BF0D575B2020000000100000082000000.cer" />
+    <None Include="EUSignCP\Data\CA-3DB73E7BF0D575B2020000000100000097000000.cer" />
+    <None Include="EUSignCP\Data\CACertificates.p7b" />
+    <None Include="EUSignCP\Data\CAs.json" />
+    <None Include="EUSignCP\Data\EU-20B4E4ED0D30998C04000000A8802100C9A06D00.cer" />
+    <None Include="EUSignCP\libs\cac.so" />
+    <None Include="EUSignCP\libs\cagui.so" />
+    <None Include="EUSignCP\libs\cspb.so" />
+    <None Include="EUSignCP\libs\cspe.so" />
+    <None Include="EUSignCP\libs\cspib.so" />
+    <None Include="EUSignCP\libs\DSTU4145CacheNB.cap" />
+    <None Include="EUSignCP\libs\DSTU4145CachePB.cap" />
+    <None Include="EUSignCP\libs\ekc1.so" />
+    <None Include="EUSignCP\libs\euscp.so" />
+    <None Include="EUSignCP\libs\euscpct" />
+    <None Include="EUSignCP\libs\km.eka1c.so" />
+    <None Include="EUSignCP\libs\km.ekc1.so" />
+    <None Include="EUSignCP\libs\km.fs.so" />
+    <None Include="EUSignCP\libs\km.ncmg301.so" />
+    <None Include="EUSignCP\libs\km.pkcs11.so" />
+    <None Include="EUSignCP\libs\km.so" />
+    <None Include="EUSignCP\libs\ldapc.so" />
+    <None Include="EUSignCP\libs\libosi.so" />
+    <None Include="EUSignCP\libs\nchcp.so" />
+    <None Include="EUSignCP\libs\ncmg301.so" />
+    <None Include="EUSignCP\libs\osplm.ini" />
+    <None Include="EUSignCP\libs\pkcs11.eka1c.so" />
+    <None Include="EUSignCP\libs\pkcs11.ekc1.so" />
+    <None Include="EUSignCP\libs\pkif.so" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EUSignCP\libs\CAConnectors.dll" />
+    <Content Include="EUSignCP\libs\CSPBase.dll" />
+    <Content Include="EUSignCP\libs\CSPExtension.dll" />
+    <Content Include="EUSignCP\libs\CSPIBase.dll" />
+    <Content Include="EUSignCP\libs\EUSignCP.dll" />
+    <Content Include="EUSignCP\libs\KM.dll" />
+    <Content Include="EUSignCP\libs\PKIFormats.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
