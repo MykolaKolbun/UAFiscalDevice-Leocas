@@ -421,10 +421,7 @@ namespace UA_Fiscal_Leocas
             Logger log = new Logger(MachineID);
             bool receiptDone = true;
             inTransaction = true;
-            printer.GetStatusEx();
-            printer.GetStatus();
             printer.RegUser(1, 1);
-            printer.GetStatus();
             StatusAnalizer();
             UInt32 amount = 0;
             if (cash.Amount >= 0)
@@ -451,8 +448,6 @@ namespace UA_Fiscal_Leocas
                         receiptDone &= ErrorAnalizer(err);
                 }
                 log.Write($"FD  : CashIn amount: {cash.Amount} from source: {cash.Source.ToString()}, result: {deviceState.FiscalDeviceReady & receiptDone}");
-                printer.GetStatusEx();
-                printer.GetStatus();
                 StatusAnalizer();
                 if (deviceState.FiscalDeviceReady)
                 {
@@ -466,8 +461,6 @@ namespace UA_Fiscal_Leocas
                     err = printer.VoidChk();
                     if (err != 0)
                         ErrorAnalizer(err);
-                    printer.GetStatusEx();
-                    printer.GetStatus();
                     StatusAnalizer();
                 }
             }
@@ -479,8 +472,6 @@ namespace UA_Fiscal_Leocas
                     ErrorAnalizer(err);
                 log.Write($"FD  : CashIn exception: {e.Message}");
                 StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, e.Message);
-                printer.GetStatusEx();
-                printer.GetStatus();
                 StatusAnalizer();
                 inTransaction = false;
             }

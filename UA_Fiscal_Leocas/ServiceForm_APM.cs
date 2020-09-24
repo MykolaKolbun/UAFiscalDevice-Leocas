@@ -130,7 +130,8 @@ namespace UA_Fiscal_Leocas
                 uint err = printer.PrintRep(0);
                 if (err != 0)
                 {
-                    MessageBox.Show(new Form { TopMost = true }, errStr);
+
+                    //MessageBox.Show(new Form { TopMost = true }, errStr);
                     log.Write($"FDFS: Print XRep error: {err}");
                     UpdateStatus();
                     fd.ErrorAnalizer(err);
@@ -144,7 +145,7 @@ namespace UA_Fiscal_Leocas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(new Form { TopMost = true }, ex.Message);
+                //MessageBox.Show(new Form { TopMost = true }, ex.Message);
                 log.Write($"FDFS: Print XRep exception: {ex.Message}");
                 OnStatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, ex.Message);
                 UpdateStatus();
