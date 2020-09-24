@@ -359,7 +359,7 @@ namespace UA_Fiscal_Leocas
             this.Enabled = false;
             try
             {
-                uint err = printer.PrintRep(16);
+                uint err = printer.PrintRep(17);
                 if (err != 0)
                 {
                     MessageBox.Show(new Form { TopMost = true }, errStr);
