@@ -798,6 +798,7 @@ namespace UA_Fiscal_Leocas
                         try
                         {
                             printer.Connect(connectionString);
+                            printer.RegUser(1, 1);
                             printer.PrgTime();
                             log.Write($"FDAU: Close shift");
                             uint err = printer.PrintRep(16);
@@ -809,7 +810,6 @@ namespace UA_Fiscal_Leocas
                                 shiftStarted = false;
                             }
                             printer.GetStatusEx();
-                            //printer.GetStatus();
                             StatusAnalizer();
                             printer.Disconnect();
                             inTransaction = false;
