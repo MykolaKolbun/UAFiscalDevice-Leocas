@@ -79,26 +79,13 @@
             this.chbIsCash = new System.Windows.Forms.CheckBox();
             this.Tabs = new System.Windows.Forms.TabControl();
             this.tabPageService = new System.Windows.Forms.TabPage();
-            this.btnReconnect = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnUpdateAmount = new System.Windows.Forms.Button();
             this.txbCashSerialized = new System.Windows.Forms.TextBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.btnVoidDoc = new System.Windows.Forms.Button();
             this.btnVoidRec = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.timeToStartShift = new System.Windows.Forms.DateTimePicker();
-            this.timeFromStartShift = new System.Windows.Forms.DateTimePicker();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.timeFromEndShift = new System.Windows.Forms.DateTimePicker();
-            this.timeToEndShift = new System.Windows.Forms.DateTimePicker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPageFiscal = new System.Windows.Forms.TabPage();
             this.groupBoxFP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -111,8 +98,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.tabPageFiscal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -384,7 +369,7 @@
             this.btnCopyCheck.Name = "btnCopyCheck";
             this.btnCopyCheck.Size = new System.Drawing.Size(83, 23);
             this.btnCopyCheck.TabIndex = 19;
-            this.btnCopyCheck.Text = "Копия чеку";
+            this.btnCopyCheck.Text = "Копия док";
             this.btnCopyCheck.UseVisualStyleBackColor = false;
             this.btnCopyCheck.Click += new System.EventHandler(this.btnCopyCheck_Click);
             // 
@@ -671,7 +656,6 @@
             // tabPageService
             // 
             this.tabPageService.BackColor = System.Drawing.Color.DarkGray;
-            this.tabPageService.Controls.Add(this.btnReconnect);
             this.tabPageService.Controls.Add(this.groupBox3);
             this.tabPageService.Location = new System.Drawing.Point(4, 22);
             this.tabPageService.Name = "tabPageService";
@@ -680,27 +664,13 @@
             this.tabPageService.TabIndex = 0;
             this.tabPageService.Text = "Service";
             // 
-            // btnReconnect
-            // 
-            this.btnReconnect.Location = new System.Drawing.Point(407, 318);
-            this.btnReconnect.Name = "btnReconnect";
-            this.btnReconnect.Size = new System.Drawing.Size(75, 23);
-            this.btnReconnect.TabIndex = 2;
-            this.btnReconnect.Text = "Підключити";
-            this.btnReconnect.UseVisualStyleBackColor = true;
-            this.btnReconnect.Click += new System.EventHandler(this.btnReconnect_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.groupBox2);
-            this.groupBox3.Controls.Add(this.btnUpdate);
             this.groupBox3.Controls.Add(this.groupBox7);
-            this.groupBox3.Controls.Add(this.groupBox6);
-            this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Controls.Add(this.checkBox1);
             this.groupBox3.Location = new System.Drawing.Point(3, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(190, 332);
+            this.groupBox3.Size = new System.Drawing.Size(182, 332);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Fiscal Parameters";
@@ -709,7 +679,7 @@
             // 
             this.groupBox2.Controls.Add(this.btnUpdateAmount);
             this.groupBox2.Controls.Add(this.txbCashSerialized);
-            this.groupBox2.Location = new System.Drawing.Point(6, 242);
+            this.groupBox2.Location = new System.Drawing.Point(6, 182);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(166, 84);
             this.groupBox2.TabIndex = 13;
@@ -734,20 +704,11 @@
             this.txbCashSerialized.Size = new System.Drawing.Size(100, 20);
             this.txbCashSerialized.TabIndex = 10;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(97, 15);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 7;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.btnVoidDoc);
             this.groupBox7.Controls.Add(this.btnVoidRec);
-            this.groupBox7.Location = new System.Drawing.Point(6, 183);
+            this.groupBox7.Location = new System.Drawing.Point(6, 19);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(166, 54);
             this.groupBox7.TabIndex = 9;
@@ -772,110 +733,6 @@
             this.btnVoidRec.Text = "VoidReceipt";
             this.btnVoidRec.UseVisualStyleBackColor = true;
             this.btnVoidRec.Click += new System.EventHandler(this.btnVoidRec_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.timeToStartShift);
-            this.groupBox6.Controls.Add(this.timeFromStartShift);
-            this.groupBox6.Controls.Add(this.label18);
-            this.groupBox6.Controls.Add(this.label17);
-            this.groupBox6.Location = new System.Drawing.Point(6, 109);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(166, 68);
-            this.groupBox6.TabIndex = 6;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Shift Start Time";
-            // 
-            // timeToStartShift
-            // 
-            this.timeToStartShift.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeToStartShift.Location = new System.Drawing.Point(88, 32);
-            this.timeToStartShift.Name = "timeToStartShift";
-            this.timeToStartShift.Size = new System.Drawing.Size(65, 20);
-            this.timeToStartShift.TabIndex = 3;
-            // 
-            // timeFromStartShift
-            // 
-            this.timeFromStartShift.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeFromStartShift.Location = new System.Drawing.Point(7, 32);
-            this.timeFromStartShift.Name = "timeFromStartShift";
-            this.timeFromStartShift.Size = new System.Drawing.Size(64, 20);
-            this.timeFromStartShift.TabIndex = 2;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(88, 16);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(20, 13);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "To";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 16);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(30, 13);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "From";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label15);
-            this.groupBox5.Controls.Add(this.label16);
-            this.groupBox5.Controls.Add(this.timeFromEndShift);
-            this.groupBox5.Controls.Add(this.timeToEndShift);
-            this.groupBox5.Location = new System.Drawing.Point(6, 42);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(166, 61);
-            this.groupBox5.TabIndex = 5;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Shift Close Time";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 16);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(30, 13);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "From";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(88, 16);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(20, 13);
-            this.label16.TabIndex = 4;
-            this.label16.Text = "To";
-            // 
-            // timeFromEndShift
-            // 
-            this.timeFromEndShift.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeFromEndShift.Location = new System.Drawing.Point(6, 33);
-            this.timeFromEndShift.Name = "timeFromEndShift";
-            this.timeFromEndShift.Size = new System.Drawing.Size(65, 20);
-            this.timeFromEndShift.TabIndex = 2;
-            // 
-            // timeToEndShift
-            // 
-            this.timeToEndShift.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.timeToEndShift.Location = new System.Drawing.Point(88, 33);
-            this.timeToEndShift.Name = "timeToEndShift";
-            this.timeToEndShift.Size = new System.Drawing.Size(65, 20);
-            this.timeToEndShift.TabIndex = 3;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(6, 19);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(84, 17);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Auto On/Off";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // tabPageFiscal
             // 
@@ -922,14 +779,9 @@
             this.Tabs.ResumeLayout(false);
             this.tabPageService.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.tabPageFiscal.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -983,26 +835,13 @@
         private System.Windows.Forms.TabControl Tabs;
         private System.Windows.Forms.TabPage tabPageService;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button btnVoidDoc;
         private System.Windows.Forms.Button btnVoidRec;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.DateTimePicker timeToStartShift;
-        private System.Windows.Forms.DateTimePicker timeFromStartShift;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.DateTimePicker timeFromEndShift;
-        private System.Windows.Forms.DateTimePicker timeToEndShift;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage tabPageFiscal;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnUpdateAmount;
         private System.Windows.Forms.TextBox txbCashSerialized;
-        private System.Windows.Forms.Button btnReconnect;
         private System.Windows.Forms.Button btnTimeSync;
         private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.Label label7;

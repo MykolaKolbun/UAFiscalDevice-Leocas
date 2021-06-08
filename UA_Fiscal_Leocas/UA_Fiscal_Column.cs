@@ -777,11 +777,14 @@ namespace UA_Fiscal_Leocas
             { 
                 if(now.Minutes == 0)
                 {
-                    LeoCasFunction printer = new LeoCasFunction();
-                    printer.Connect(connectionString);
-                    printer.PrgTime();
                     log.Write($"FDAU: Set Time");
-                    printer.Disconnect();
+                    LeoCasFunction printer = new LeoCasFunction();
+                    uint err = printer.Connect(connectionString);
+                    log.Write($"Connect: res={err}");
+                    err= printer.PrgTime();
+                    log.Write($"ProgTime: res={err}");
+                    err = printer.Disconnect();
+                    log.Write($"Disconnect: res={err}");
                 }
             }
             #endregion

@@ -106,7 +106,7 @@ namespace UA_Fiscal_Leocas
                 catch (Exception e)
                 {
 
-                    log.Write($"FD  : Install - Exception: {e.Message}");
+                    log.Write($"FD  : Instal Exception: {e.Message}");
                     this.StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, e.Message);
                     inTransaction = false;
                 }
@@ -250,7 +250,7 @@ namespace UA_Fiscal_Leocas
                             uint price = Convert.ToUInt32(item.UnitPrice * 100);
                             if (visaDiscount)
                             {
-                                price = ((price / 2) > 20000) ? (price - 20000) : (price / 2);
+                                price = ((price / 2) >= 20000) ? (price - 20000) : (price / 2);
                             }
 
                             byte group = 1;
@@ -285,7 +285,7 @@ namespace UA_Fiscal_Leocas
                         uint sum = Convert.ToUInt32(payment.Amount * 100);
                         if (visaDiscount)
                         {
-                            sum = ((sum / 2) > 20000) ? (sum - 20000) : (sum / 2);
+                            sum = ((sum / 2) >= 20000) ? (sum - 20000) : (sum / 2);
                         }
                         if (deviceState.FiscalDeviceReady & receiptClosed)
                         {

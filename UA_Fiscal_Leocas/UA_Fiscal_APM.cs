@@ -247,7 +247,7 @@ namespace UA_Fiscal_Leocas
                             uint price = Convert.ToUInt32(item.UnitPrice * 100);
                             if (visaDiscount)
                             {
-                                price = ((price / 2) > 20000) ? (price - 20000) : (price / 2);
+                                price = ((price / 2) >= 20000) ? (price - 20000) : (price / 2);
                             }
 
                             byte group = 1;
@@ -282,7 +282,9 @@ namespace UA_Fiscal_Leocas
                         uint sum = Convert.ToUInt32(payment.Amount * 100);
                         if (visaDiscount)
                         {
-                            sum = ((sum / 2) > 20000) ? (sum - 20000) : (sum / 2);
+                            //TODO Change name to sum after testing Visa
+                            uint newsum = ((sum / 2) >= 20000) ? (sum - 20000) : (sum / 2);
+                            log.Write($"FD  : Visa amount: {newsum}, result: {deviceState.FiscalDeviceReady & receiptDone}");
                         }
                         if (deviceState.FiscalDeviceReady)
                         {

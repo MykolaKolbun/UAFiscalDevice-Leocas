@@ -519,6 +519,7 @@ namespace UA_Fiscal_Leocas
         {
             UInt16 txbRepNrStr = 0;
             Logger log = new Logger(MachineId);
+            UInt16.TryParse(txbReceiptNr.Text, out txbRepNrStr);
             this.Enabled = false;
             try
             {
@@ -753,11 +754,6 @@ namespace UA_Fiscal_Leocas
             log.Write($"FDFS: Void receipt result: {fd.deviceState.FiscalDeviceReady}");
             this.Enabled = true;
             UpdateStatus();
-        }
-
-        private void btnReconnect_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnTimeSync_Click(object sender, EventArgs e)
