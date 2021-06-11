@@ -183,7 +183,9 @@ namespace UA_Fiscal_Leocas
                             printer.GetStatus();
                             StatusAnalizer();
                             printer.TextChk("---Відповідь з банку----");
+                            log.Write($"FD  : Transaction ID: {transaction}");
                             string[] lines = sql.GetTransactionFromDBbyDevice(paymentMachineId, transaction).Split('\n');
+
                             for (int line = 0; line < lines.Length; line++)
                             {
                                 if (lines[line].Length > 1)

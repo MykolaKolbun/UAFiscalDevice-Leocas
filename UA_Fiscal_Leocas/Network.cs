@@ -71,8 +71,6 @@ namespace UA_Fiscal_Leocas
         /// <returns></returns>
         public int Close()
         {
-            //sender.Shutdown(SocketShutdown.Both);
-            //sender.Close();
             LingerOption lingerOption = new LingerOption(true, 0);
             tcpClient.LingerState = lingerOption;
             tcpClient.GetStream().Close();
