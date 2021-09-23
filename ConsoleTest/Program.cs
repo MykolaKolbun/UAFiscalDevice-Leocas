@@ -10,8 +10,8 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            SQLConnect connect = new SQLConnect();
-            Console.Write($"{connect.GetDiscountProperty("488E10F001", "112")}");
+            Settings settings = new Settings();
+            Settings.SaveSettings(settings);
         }
     }
 }

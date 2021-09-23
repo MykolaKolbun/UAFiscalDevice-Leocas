@@ -35,6 +35,16 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.gbxStatus = new System.Windows.Forms.GroupBox();
+            this.chbxLowPaper = new System.Windows.Forms.CheckBox();
+            this.chbxShiftBeg = new System.Windows.Forms.CheckBox();
+            this.chbx24Hour = new System.Windows.Forms.CheckBox();
+            this.chbxDocOpnd = new System.Windows.Forms.CheckBox();
+            this.chbxIsBlocked = new System.Windows.Forms.CheckBox();
+            this.chbxOpReg = new System.Windows.Forms.CheckBox();
+            this.chbxReceiptOpened = new System.Windows.Forms.CheckBox();
+            this.chbxPrinErr = new System.Windows.Forms.CheckBox();
+            this.chbxOutPaper = new System.Windows.Forms.CheckBox();
+            this.chbx72hour = new System.Windows.Forms.CheckBox();
             this.gbxFiscalFn = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbxReturn = new System.Windows.Forms.CheckBox();
@@ -62,16 +72,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chbxLowPaper = new System.Windows.Forms.CheckBox();
-            this.chbx24Hour = new System.Windows.Forms.CheckBox();
-            this.chbxIsBlocked = new System.Windows.Forms.CheckBox();
-            this.chbxShiftBeg = new System.Windows.Forms.CheckBox();
-            this.chbxPrinErr = new System.Windows.Forms.CheckBox();
-            this.chbx72hour = new System.Windows.Forms.CheckBox();
-            this.chbxOutPaper = new System.Windows.Forms.CheckBox();
-            this.chbxReceiptOpened = new System.Windows.Forms.CheckBox();
-            this.chbxOpReg = new System.Windows.Forms.CheckBox();
-            this.chbxDocOpnd = new System.Windows.Forms.CheckBox();
+            this.btnDisconect = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbxStatus.SuspendLayout();
             this.gbxFiscalFn.SuspendLayout();
@@ -93,6 +94,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDisconect);
             this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbxSelectDevice);
@@ -124,6 +126,66 @@
             resources.ApplyResources(this.gbxStatus, "gbxStatus");
             this.gbxStatus.Name = "gbxStatus";
             this.gbxStatus.TabStop = false;
+            // 
+            // chbxLowPaper
+            // 
+            resources.ApplyResources(this.chbxLowPaper, "chbxLowPaper");
+            this.chbxLowPaper.Name = "chbxLowPaper";
+            this.chbxLowPaper.UseVisualStyleBackColor = true;
+            // 
+            // chbxShiftBeg
+            // 
+            resources.ApplyResources(this.chbxShiftBeg, "chbxShiftBeg");
+            this.chbxShiftBeg.Name = "chbxShiftBeg";
+            this.chbxShiftBeg.UseVisualStyleBackColor = true;
+            // 
+            // chbx24Hour
+            // 
+            resources.ApplyResources(this.chbx24Hour, "chbx24Hour");
+            this.chbx24Hour.Name = "chbx24Hour";
+            this.chbx24Hour.UseVisualStyleBackColor = true;
+            // 
+            // chbxDocOpnd
+            // 
+            resources.ApplyResources(this.chbxDocOpnd, "chbxDocOpnd");
+            this.chbxDocOpnd.Name = "chbxDocOpnd";
+            this.chbxDocOpnd.UseVisualStyleBackColor = true;
+            // 
+            // chbxIsBlocked
+            // 
+            resources.ApplyResources(this.chbxIsBlocked, "chbxIsBlocked");
+            this.chbxIsBlocked.Name = "chbxIsBlocked";
+            this.chbxIsBlocked.UseVisualStyleBackColor = true;
+            // 
+            // chbxOpReg
+            // 
+            resources.ApplyResources(this.chbxOpReg, "chbxOpReg");
+            this.chbxOpReg.Name = "chbxOpReg";
+            this.chbxOpReg.UseVisualStyleBackColor = true;
+            // 
+            // chbxReceiptOpened
+            // 
+            resources.ApplyResources(this.chbxReceiptOpened, "chbxReceiptOpened");
+            this.chbxReceiptOpened.Name = "chbxReceiptOpened";
+            this.chbxReceiptOpened.UseVisualStyleBackColor = true;
+            // 
+            // chbxPrinErr
+            // 
+            resources.ApplyResources(this.chbxPrinErr, "chbxPrinErr");
+            this.chbxPrinErr.Name = "chbxPrinErr";
+            this.chbxPrinErr.UseVisualStyleBackColor = true;
+            // 
+            // chbxOutPaper
+            // 
+            resources.ApplyResources(this.chbxOutPaper, "chbxOutPaper");
+            this.chbxOutPaper.Name = "chbxOutPaper";
+            this.chbxOutPaper.UseVisualStyleBackColor = true;
+            // 
+            // chbx72hour
+            // 
+            resources.ApplyResources(this.chbx72hour, "chbx72hour");
+            this.chbx72hour.Name = "chbx72hour";
+            this.chbx72hour.UseVisualStyleBackColor = true;
             // 
             // gbxFiscalFn
             // 
@@ -319,65 +381,14 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // chbxLowPaper
+            // btnDisconect
             // 
-            resources.ApplyResources(this.chbxLowPaper, "chbxLowPaper");
-            this.chbxLowPaper.Name = "chbxLowPaper";
-            this.chbxLowPaper.UseVisualStyleBackColor = true;
-            // 
-            // chbx24Hour
-            // 
-            resources.ApplyResources(this.chbx24Hour, "chbx24Hour");
-            this.chbx24Hour.Name = "chbx24Hour";
-            this.chbx24Hour.UseVisualStyleBackColor = true;
-            // 
-            // chbxIsBlocked
-            // 
-            resources.ApplyResources(this.chbxIsBlocked, "chbxIsBlocked");
-            this.chbxIsBlocked.Name = "chbxIsBlocked";
-            this.chbxIsBlocked.UseVisualStyleBackColor = true;
-            // 
-            // chbxShiftBeg
-            // 
-            resources.ApplyResources(this.chbxShiftBeg, "chbxShiftBeg");
-            this.chbxShiftBeg.Name = "chbxShiftBeg";
-            this.chbxShiftBeg.UseVisualStyleBackColor = true;
-            // 
-            // chbxPrinErr
-            // 
-            resources.ApplyResources(this.chbxPrinErr, "chbxPrinErr");
-            this.chbxPrinErr.Name = "chbxPrinErr";
-            this.chbxPrinErr.UseVisualStyleBackColor = true;
-            // 
-            // chbx72hour
-            // 
-            resources.ApplyResources(this.chbx72hour, "chbx72hour");
-            this.chbx72hour.Name = "chbx72hour";
-            this.chbx72hour.UseVisualStyleBackColor = true;
-            // 
-            // chbxOutPaper
-            // 
-            resources.ApplyResources(this.chbxOutPaper, "chbxOutPaper");
-            this.chbxOutPaper.Name = "chbxOutPaper";
-            this.chbxOutPaper.UseVisualStyleBackColor = true;
-            // 
-            // chbxReceiptOpened
-            // 
-            resources.ApplyResources(this.chbxReceiptOpened, "chbxReceiptOpened");
-            this.chbxReceiptOpened.Name = "chbxReceiptOpened";
-            this.chbxReceiptOpened.UseVisualStyleBackColor = true;
-            // 
-            // chbxOpReg
-            // 
-            resources.ApplyResources(this.chbxOpReg, "chbxOpReg");
-            this.chbxOpReg.Name = "chbxOpReg";
-            this.chbxOpReg.UseVisualStyleBackColor = true;
-            // 
-            // chbxDocOpnd
-            // 
-            resources.ApplyResources(this.chbxDocOpnd, "chbxDocOpnd");
-            this.chbxDocOpnd.Name = "chbxDocOpnd";
-            this.chbxDocOpnd.UseVisualStyleBackColor = true;
+            this.btnDisconect.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnDisconect.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.btnDisconect, "btnDisconect");
+            this.btnDisconect.Name = "btnDisconect";
+            this.btnDisconect.UseVisualStyleBackColor = false;
+            this.btnDisconect.Click += new System.EventHandler(this.btnDisconect_Click);
             // 
             // FiscalServiceMenu
             // 
@@ -454,5 +465,6 @@
         private System.Windows.Forms.CheckBox chbxPrinErr;
         private System.Windows.Forms.CheckBox chbxOutPaper;
         private System.Windows.Forms.CheckBox chbx72hour;
+        private System.Windows.Forms.Button btnDisconect;
     }
 }

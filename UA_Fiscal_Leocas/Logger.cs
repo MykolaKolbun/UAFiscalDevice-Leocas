@@ -17,6 +17,12 @@ namespace UA_Fiscal_Leocas
         {
             this.FilePath =  $@"C:\Log\{machineID}_FiscalTrace-{DateTime.Now:yyyy-MM-dd}.txt";
         }
+        public Logger(string machineID, string source)
+        {
+           // this.FilePath = $@"C:\Log\{machineID}_FiscalTrace-{DateTime.Now:yyyy-MM-dd}.txt";
+            string dateTime = $"{DateTime.Now:yyyy-MM-dd}";
+            this.FilePath = string.Format(StringValue.LogFile, machineID, source, dateTime);
+        }
 
         /// <summary>
         /// Запись строки в лог файл. Перегруженый.
@@ -61,6 +67,14 @@ namespace UA_Fiscal_Leocas
             string dateTime = DateTime.Now.ToString();
             StreamWriter sw = new StreamWriter(FilePath, true, Encoding.UTF8);
             sw.WriteLine("{0}: {1}", dateTime, mess);
+            sw.Close();
+        }
+
+        public void Write(string source, string mess)
+        {
+            string dateTime = DateTime.Now.ToString();
+            StreamWriter sw = new StreamWriter(FilePath, true, Encoding.UTF8);
+            sw.WriteLine("{0}: method: {1} {2}", dateTime, source, mess);
             sw.Close();
         }
     }

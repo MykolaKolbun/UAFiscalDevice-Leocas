@@ -16,5 +16,10 @@ namespace ConsoleTest
         public const string SQLServerConnectionString = @"Data Source = 10.1.13.11; Initial Catalog = PARK_DB; User ID = qwert; Password=P@ran01d";
         //public const string SQLServerConnectionString = @"Data Source = " + "10.10.50.1" + "; Initial Catalog = PARK_DB; User ID = qwert; Password=P@ran01d";
         #endregion
+
+        #region Settings file
+        public const string LeoCasFiscalSettings = @"C:\FiscalFolder\LeoCasFiscalSettings.xml";
+
+        #endregion
     }
 }

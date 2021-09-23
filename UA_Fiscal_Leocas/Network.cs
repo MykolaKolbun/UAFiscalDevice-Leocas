@@ -71,11 +71,16 @@ namespace UA_Fiscal_Leocas
         /// <returns></returns>
         public int Close()
         {
-            LingerOption lingerOption = new LingerOption(true, 0);
-            tcpClient.LingerState = lingerOption;
-            tcpClient.GetStream().Close();
-            tcpClient.Close();
-            tcpClient = null;
+            try
+            {
+                LingerOption lingerOption = new LingerOption(true, 0);
+                tcpClient.LingerState = lingerOption;
+                tcpClient.GetStream().Close();
+                tcpClient.Close();
+                tcpClient = null;
+            }
+            catch
+            { }
             return 0;
         }
         #endregion

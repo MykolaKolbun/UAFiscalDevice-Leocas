@@ -37,8 +37,9 @@ namespace FiscalServiceMenu
 
         private void FiscalServiceMenu_Load(object sender, EventArgs e)
         {
-            devices.Add(new Device(1, "Виїзд 41", "10.10.50.103:23000"));
-            devices.Add(new Device(2, "Виїзд 42", "10.10.50.104:23000"));
+            devices.Add(new Device(1, "Виїзд 41", "10.10.50.104:23000"));
+            devices.Add(new Device(2, "Виїзд 42", "10.10.50.105:23000"));
+            devices.Add(new Device(3, "Виїзд 43", "10.10.50.106:23000"));
             printer = new LeoCasLib();
             timer1.Start();
             foreach (Device dev in devices)
@@ -457,6 +458,11 @@ namespace FiscalServiceMenu
         {
             lblTime.Text = DateTime.Now.ToLongTimeString();
             timer1.Start();
+        }
+
+        private void btnDisconect_Click(object sender, EventArgs e)
+        {
+            printer.Disconnect();
         }
     }
 }

@@ -32,7 +32,7 @@ namespace UA_Fiscal_Leocas
         List<Item> items;
         Payment payment;
         public FiscalDeviceConfiguration fiscalDeviceConfiguration;
-        LeoCasFunction printer;
+        //LeoCasLib printer;
         #endregion
 
         #region Construction
@@ -64,14 +64,14 @@ namespace UA_Fiscal_Leocas
         public Result Install(FiscalDeviceConfiguration configuration)
         {
             inTransaction = true;
-            printer = new LeoCasFunction();
+            LeoCasLib printer = new LeoCasLib();
             fiscalDeviceConfiguration = configuration;
             paymentMachineId = configuration.DeviceId;
             MachineID = paymentMachineId;
             Logger log = new Logger(MachineID);
             paymentMachineName = configuration.DeviceName;
             connectionString = configuration.CommunicationChannel;
-            deviceState = new StateInfo(true, SkiDataErrorCode.Ok, "New connection");
+            deviceState = new StateInfo(false, SkiDataErrorCode.Ok, "New connection");
             uint err = printer.Connect(connectionString);
             if (err == 0)
                 this.StatusChangedEvent(true, (int)deviceState.ErrorCode, "РРО подлючен");
@@ -88,6 +88,7 @@ namespace UA_Fiscal_Leocas
                     if (err != 0)
                         ErrorAnalizer(err);
                 }
+                printer.Disconnect();
             }
             catch (Exception e)
             {
@@ -97,7 +98,6 @@ namespace UA_Fiscal_Leocas
                 printer.Disconnect();
             }
             log.Write($"FD  : Install - {deviceState.FiscalDeviceReady}");
-            printer.Disconnect();
             inTransaction = false;
             return new Result(deviceState.FiscalDeviceReady);
         }
@@ -158,47 +158,52 @@ namespace UA_Fiscal_Leocas
             Logger log = new Logger(MachineID);
             //LeoCasFunction printer = new LeoCasFunction();
             //printer = new LeoCasFunction();
+            LeoCasLib printer = new LeoCasLib();
             bool doSale = true;
             bool receiptDone = true;
-            log.Write($"FD  : Close Transaction");
+            log.Write($"FD  : Close Transaction -- -- -- -- -- ");
             if (!transactionTimeOutExceed)
             {
                 try
                 {
-                    log.Write($"Connect: {printer.Connect(connectionString)}");
-                    log.Write($"RegUser: {printer.RegUser(1, 1)}");
-                    log.Write($"ShiftBegin: {printer.ShiftBegin()}");
-                    //printer.GetStatusEx();
-                    //printer.GetStatus();
-                    StatusAnalizer();
-                    uint err = printer.BegChk();
-                    log.Write($"BegCheck: {err}");
+                    uint err = printer.Connect(connectionString);
+                    log.Write($"FDAU: Connect: {err}");
+                    err = printer.PrgTime();
+                    log.Write($"FDAU: ProgTime: {err}");
+                    err = printer.RegUser(1, 1);
+                    err = printer.ShiftBegin();
+                    err = printer.BegChk();
+                    log.Write($"FD  : BegCheck: {err}");
                     if (err != 0)
                         receiptDone = ErrorAnalizer(err);
+                    else
+                    {
+                        StatusChangedEvent(true, (int)SkiDataErrorCode.Ok, "");
+                    }
                     if (payment.PaymentType == PaymentType.CreditCard)
                     {
                         #region Add Receipt from bank
                         try
                         {
                             SQLConnect sql = new SQLConnect();
-                            printer.TextChk("---Відповідь з банку----");
+                            err = printer.TextChk("---Відповідь з банку----");
                             string[] lines = sql.GetTransactionFromDBbyDevice(paymentMachineId, transaction).Split('\n');
                             for (int line = 0; line < lines.Length; line++)
                             {
                                 if (lines[line].Length > 1)
                                 {
-                                    printer.TextChk(lines[line]);
+                                    err = printer.TextChk(lines[line]);
                                 }
                             }
-                            printer.TextChk("------------------------");
+                            err = printer.TextChk("------------------------");
                         }
                         catch
                         {
-                            printer.TextChk("Відповідь не можна");
-                            printer.TextChk("роздрукувати.");
-                            printer.TextChk("Зверніться до адміністратора");
-                            printer.TextChk("за чеком.");
-                            printer.TextChk("------------------------");
+                            err = printer.TextChk("Відповідь не можна");
+                            err = printer.TextChk("роздрукувати.");
+                            err = printer.TextChk("Зверніться до адміністратора");
+                            err = printer.TextChk("за чеком.");
+                            err = printer.TextChk("------------------------");
                         }
                         #endregion
                     }
@@ -217,9 +222,9 @@ namespace UA_Fiscal_Leocas
                             {
                                 DateTime myEntryTime = parkingItem.EntryTime;
                                 DateTime myExitTime = parkingItem.PaidUntil;
-                                printer.TextChkEx(string.Format("ID:{0}", parkingItem.TicketId));
-                                printer.TextChkEx(string.Format("Час заїзду: {0}", myEntryTime.ToString(@"dd.MM.yy HH:mm")));
-                                printer.TextChkEx(string.Format("  Виїзд до: {0}", myExitTime.ToString(@"dd.MM.yy HH:mm")));
+                                err = printer.TextChkEx(string.Format("ID:{0}", parkingItem.TicketId));
+                                err = printer.TextChkEx(string.Format("Час заїзду: {0}", myEntryTime.ToString(@"dd.MM.yy HH:mm")));
+                                err = printer.TextChkEx(string.Format("  Виїзд до: {0}", myExitTime.ToString(@"dd.MM.yy HH:mm")));
                             }
                             ulong code = Convert.ToUInt64(item.Id);
                             uint quantity = Convert.ToUInt32(item.Quantity * 1000);
@@ -232,11 +237,9 @@ namespace UA_Fiscal_Leocas
                             if (deviceState.FiscalDeviceReady & receiptDone)
                             {
                                 err = printer.NProd(code, quantity, price, group, tax, unit, name);
-                                log.Write($"NProd: {err}");
+                                log.Write($"FD  : NProd: {err}");
                                 if (err != 0)
                                     receiptDone &= ErrorAnalizer(err);
-                                //printer.GetStatusEx();
-                                //printer.GetStatus();
                                 StatusAnalizer();
                             }
                             log.Write($"FD  : Total price: {price}, result: {deviceState.FiscalDeviceReady & receiptDone}");
@@ -265,8 +268,7 @@ namespace UA_Fiscal_Leocas
                             {
                                 receiptDone &= ErrorAnalizer(err);
                             }
-                            //printer.GetStatusEx();
-                            //printer.GetStatus();
+                            printer.GetStatusEx();
                             StatusAnalizer();
                         }
                         log.Write($"FD  : Paid amount: {sum}, result: {deviceState.FiscalDeviceReady & receiptDone}");
@@ -282,7 +284,6 @@ namespace UA_Fiscal_Leocas
                                 receiptDone &= ErrorAnalizer(err);
                             }
                             printer.GetStatusEx();
-                            //printer.GetStatus();
                             StatusAnalizer();
                             log.Write($"FD  : Close receipt, result: {deviceState.FiscalDeviceReady & receiptDone}");
                         }
@@ -298,7 +299,6 @@ namespace UA_Fiscal_Leocas
                         {
                             ErrorAnalizer(err);
                         }
-                        //printer.Disconnect();
                         log.Write($"FD  : Credit Entry detected. Void receipt.");
                         return new TransactionResult(false, "Credit Entry detected");
                     }
@@ -315,10 +315,6 @@ namespace UA_Fiscal_Leocas
                     {
                         ErrorAnalizer(err);
                     }
-                    //printer.GetStatusEx();
-                    ////printer.GetStatus();
-                    //StatusAnalizer();
-                    //printer.Disconnect();
                     StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, e.Message);
                     log.Write($"FD  : Exception for Close Transaction: {e.Message}");
                     inTransaction = false;
@@ -331,7 +327,7 @@ namespace UA_Fiscal_Leocas
             }
             else
             {
-                log.Write($"FD  : Payment time out");
+                log.Write($"FD  : Payment timed out");
                 return new TransactionResult(false, "Transaction canceled by Time out");
             }
         }
@@ -354,6 +350,7 @@ namespace UA_Fiscal_Leocas
                 if (transaction != null)
                 {
                     //LeoCasFunction printer = new LeoCasFunction();
+                    LeoCasLib printer = new LeoCasLib();
                     printer.Connect(connectionString);
                     uint err = printer.VoidChk();
                     if (err != 0)
@@ -410,18 +407,22 @@ namespace UA_Fiscal_Leocas
             LeoCasLib printer = new LeoCasLib();
             try
             {
+                log.Write($"FD  : Open Shift -- -- -- -- -- -- --");
                 uint err = printer.Connect(connectionString);
+                log.Write($"FD  : Connect: {err}");
                 if (err != 0)
                     ErrorAnalizer(err);
                 if (deviceState.FiscalDeviceReady)
                 {
                     err = printer.RegUser(1, 1);
+                    log.Write($"FD  : RegUser: {err}");
                     if (err != 0)
                         ErrorAnalizer(err);
                 }
                 if (deviceState.FiscalDeviceReady)
                 {
                     err = printer.ShiftBegin();
+                    log.Write($"FD  : ShiftBegin: {err}");
                     if (err != 0)
                         ErrorAnalizer(err);
                 }
@@ -754,37 +755,58 @@ namespace UA_Fiscal_Leocas
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             Logger log = new Logger(MachineID);
-            TimeSpan startZRep = TimeSpan.Parse("23:55");
-            TimeSpan endZRep = TimeSpan.Parse("23:58");
-            TimeSpan startShift = TimeSpan.Parse("00:01");
-            TimeSpan endShift = TimeSpan.Parse("00:03");
+            TimeSpan startZRep = TimeSpan.Parse("23:57");
+            TimeSpan endZRep = TimeSpan.Parse("23:59");
+            TimeSpan startShift = TimeSpan.Parse("00:02");
+            TimeSpan endShift = TimeSpan.Parse("00:04");
             TimeSpan now = DateTime.Now.TimeOfDay;
 
             #region ClearError
-            if (!deviceState.FiscalDeviceReady)
-            {
-                LeoCasFunction printer = new LeoCasFunction();
-                printer.Connect(connectionString);
-                if (printer.GetStatusEx() == 0)
-                    StatusAnalizer();
-                printer.Disconnect();
-            }
+            //if (!deviceState.FiscalDeviceReady)
+            //{
+            //    LeoCasFunction printer = new LeoCasFunction();
+            //    try
+            //    {
+            //        log.Write("FDAU: Clear Error");
+            //        printer.Connect(connectionString);
+            //        if (printer.GetStatusEx() == 0)
+            //            StatusAnalizer();
+            //        printer.Disconnect();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        log.Write(ex.Message);
+            //        printer.Disconnect();
+            //    }
+            //}
 
             #endregion
 
             #region Time sync
             if (!inTransaction)
-            { 
-                if(now.Minutes == 0)
+            {
+                if (now.Minutes == 0)
                 {
-                    log.Write($"FDAU: Set Time");
-                    LeoCasFunction printer = new LeoCasFunction();
-                    uint err = printer.Connect(connectionString);
-                    log.Write($"Connect: res={err}");
-                    err= printer.PrgTime();
-                    log.Write($"ProgTime: res={err}");
-                    err = printer.Disconnect();
-                    log.Write($"Disconnect: res={err}");
+                    if (now.Hours == 19)
+                    {
+                        LeoCasLib printer = new LeoCasLib();
+                        try
+                        {
+                            log.Write($"FDAU: Set Time -- -- -- -- -- -- -- ");
+                            
+                            uint err = printer.Connect(connectionString);
+                            log.Write($"FDAU: Connect: {err}");
+                            err = printer.PrgTime();
+                            log.Write($"FDAU: ProgTime: {err}");
+                            printer.Disconnect();
+                            log.Write($"FDAU: Disconnect");
+                        }
+                        catch(Exception ex)
+                        {
+                            log.Write(ex.Message);
+                            printer.Disconnect();
+                        }
+                    }
                 }
             }
             #endregion
@@ -797,17 +819,23 @@ namespace UA_Fiscal_Leocas
                     if ((now >= startZRep && now <= endZRep) && (!zrepDone))
                     {
                         inTransaction = true;
-                        LeoCasFunction printer = new LeoCasFunction();
+                        LeoCasLib printer = new LeoCasLib();
                         try
                         {
-                            printer.Connect(connectionString);
-                            printer.RegUser(1, 1);
-                            printer.PrgTime();
-                            log.Write($"FDAU: Close shift");
-                            uint err = printer.PrintRep(16);
+                            log.Write($"FDAU: Close shift - - - - - - - -");
+                            uint err = printer.Connect(connectionString);
+                            log.Write($"FDAU: Connect: {err}");
                             if (err != 0)
                                 ErrorAnalizer(err);
-                            if (err == 0)
+                            err = printer.RegUser(1, 1);
+                            log.Write($"FDAU: RegUser: {err}");
+                            if (err != 0)
+                                ErrorAnalizer(err);
+                            err = printer.PrintRep(16);
+                            log.Write($"FDAU: PrintRep(16): {err}");
+                            if (err != 0)
+                                ErrorAnalizer(err);
+                            if ((err == 0)||(err==260))
                             {
                                 zrepDone = true;
                                 shiftStarted = false;
@@ -839,25 +867,27 @@ namespace UA_Fiscal_Leocas
                     if ((now >= startShift && now <= endShift) && (!shiftStarted) && (zrepDone))
                     {
                         inTransaction = true;
-                        LeoCasFunction printer = new LeoCasFunction();
+                        LeoCasLib printer = new LeoCasLib();
                         try
                         {
-                            printer.Connect(connectionString);
-                            log.Write($"FDAU: New Shift");
+                            log.Write($"FDAU: New Shift -- -- -- -- -- -- -- --");
+                            uint err = printer.Connect(connectionString);
+                            log.Write($"FDAU: Connect: {err}");
                             StatusChangedEvent(true, (int)SkiDataErrorCode.Ok, "New shift");
-                            uint err = printer.RegUser(1, 1);
+                            err = printer.RegUser(1, 1);
+                            log.Write($"FDAU: RegUser: {err}");
                             if (err != 0)
                                 ErrorAnalizer(err);
                             if (deviceState.FiscalDeviceReady)
                             {
                                 err = printer.ShiftBegin();
+                                log.Write($"FDAU: ShiftBegin: {err}");
                                 if (err != 0)
                                     ErrorAnalizer(err);
                                 if (deviceState.FiscalDeviceReady)
                                     this.shiftStarted = true;
                             }
                             printer.GetStatusEx();
-                            //printer.GetStatus();
                             StatusAnalizer();
                             printer.Disconnect();
                             inTransaction = false;
@@ -881,20 +911,21 @@ namespace UA_Fiscal_Leocas
         {
             if (isready)
             {
-                if (!deviceState.FiscalDeviceReady)
+                //if (!deviceState.FiscalDeviceReady)
                 {
                     OnErrorCleared(new ErrorClearedEventArgs(deviceState.ErrorCode, true));
                     OnDeviceStateChanged(new ErrorClearedEventArgs(SkiDataErrorCode.Ok, true));
                 }
+
             }
             else
             {
                 if (deviceState.FiscalDeviceReady)
-                    OnErrorOccurred(new ErrorOccurredEventArgs(errorMessage, (SkiDataErrorCode)errorCode, false));
+                    OnErrorOccurred(new ErrorOccurredEventArgs(errorMessage, (SkiDataErrorCode)errorCode, true));
                 else
                 {
-                    OnErrorCleared(new ErrorClearedEventArgs(deviceState.ErrorCode, false));
-                    OnErrorOccurred(new ErrorOccurredEventArgs(errorMessage, (SkiDataErrorCode)errorCode, false));
+                    OnErrorCleared(new ErrorClearedEventArgs(deviceState.ErrorCode, isready));
+                    OnErrorOccurred(new ErrorOccurredEventArgs(errorMessage, (SkiDataErrorCode)errorCode, isready));
                 }
             }
             Logger log = new Logger(MachineID);

@@ -88,7 +88,7 @@ namespace UA_Fiscal_Leocas
             {
                 try
                 {
-                    printer.PrgTime();
+                    err = printer.PrgTime();
                     err = printer.RegUser(1, 1);
                     if (err != 0)
                         ErrorAnalizer(err);
@@ -119,7 +119,7 @@ namespace UA_Fiscal_Leocas
 
         public Result OpenTransaction(TransactionData transactionData)
         {
-            printer.PrgTime();
+            uint err = printer.PrgTime();
             Logger log = new Logger(MachineID);
             items = new List<Item>();
             inTransaction = true;
@@ -161,15 +161,14 @@ namespace UA_Fiscal_Leocas
                 Logger log = new Logger(MachineID);
                 log.Write($"FD  : Close Transaction");
                 printer.GetStatusEx();
-                printer.GetStatus();
                 StatusAnalizer();
                 string paymentTypeStr = "";
                 bool visaDiscount = false;
                 try
                 {
-                    printer.RegUser(1, 1);
-                    printer.ShiftBegin();
-                    uint err = printer.BegChk();
+                    uint err = printer.RegUser(1, 1);
+                    err = printer.ShiftBegin();
+                    err = printer.BegChk();
                     if (err != 0)
                         receiptDone = ErrorAnalizer(err);
                     if (payment.PaymentType == PaymentType.CreditCard)
@@ -180,7 +179,6 @@ namespace UA_Fiscal_Leocas
                         {
                             SQLConnect sql = new SQLConnect();
                             printer.GetStatusEx();
-                            printer.GetStatus();
                             StatusAnalizer();
                             printer.TextChk("---Відповідь з банку----");
                             log.Write($"FD  : Transaction ID: {transaction}");
@@ -325,7 +323,6 @@ namespace UA_Fiscal_Leocas
                             log.Write($"TR  : Payment serialization: {paymentTypeStr} {sum}");
                         }
                         printer.GetStatusEx();
-                        printer.GetStatus();
                         StatusAnalizer();
                         inTransaction = false;
                         log.Write($"FD  : Transaction result: {deviceState.FiscalDeviceReady & receiptDone}");
@@ -353,7 +350,6 @@ namespace UA_Fiscal_Leocas
                         ErrorAnalizer(err);
                     }
                     printer.GetStatusEx();
-                    printer.GetStatus();
                     StatusAnalizer();
                     StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, e.Message);
                     log.Write($"FD  : Exception for Close Transaction: {e.Message}");

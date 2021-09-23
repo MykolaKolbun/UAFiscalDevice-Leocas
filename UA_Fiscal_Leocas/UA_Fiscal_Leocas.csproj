@@ -56,9 +56,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SkiData.FiscalDeviceInterface, Version=3.2.1.0, Culture=neutral, PublicKeyToken=38d638859d51b818, processorArchitecture=MSIL">
+    <Reference Include="SkiData.FiscalDeviceInterface, Version=5.0.0.0, Culture=neutral, PublicKeyToken=38d638859d51b818, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files (x86)\SKIDATA\SKIDATA Fiscal Device SDK V4.0\Lib\SkiData.FiscalDeviceInterface.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files (x86)\SKIDATA\SKIDATA Fiscal Device SDK V4.0\Lib\SkiData.FiscalDeviceInterface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -72,9 +72,12 @@
     <Compile Include="Answer.cs" />
     <Compile Include="CRC.cs" />
     <Compile Include="EmptyTracing.cs" />
+    <Compile Include="FiscalDevice.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="LeoCasFunction.cs" />
+    <Compile Include="LeoCas_FiscalDevice.cs" />
     <Compile Include="Network.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="StringValue.cs" />
     <Compile Include="UA_Fiscal_Column.cs" />
     <Compile Include="ConfirmationWindow.cs">

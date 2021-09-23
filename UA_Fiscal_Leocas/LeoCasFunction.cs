@@ -130,11 +130,12 @@ namespace UA_Fiscal_Leocas
             Enumerations.Commands.TryGetValue(command, out cmdStr);
             //log.logWrite("SendData: Command-" + cmdStr, true);
             //log.logWrite("SendData: Full Package: " + BitConverter.ToString(mess.ToArray()), true);
+            SetTimer();
             try
             {
                 lastError = 0;
                 printer.Send(mess.ToArray());
-                SetTimer();
+                
                 while (!timeElapsed == !received)
                 { }
                 if (received)

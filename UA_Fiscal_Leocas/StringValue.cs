@@ -16,5 +16,10 @@ namespace UA_Fiscal_Leocas
         public const string SQLServerConnectionString = @"Data Source={0};Persist Security Info=True;User ID=qwert;Password=P@ran01d;TrustServerCertificate=False";
         //public const string SQLServerConnectionString = @"Data Source = " + "10.10.50.1" + "; Initial Catalog = PARK_DB; User ID = qwert; Password=P@ran01d";
         #endregion
+
+        #region Settings file
+        public const string LeoCasFiscalSettings = @"C:\FiscalFolder\LeoCasFiscalSettings.xml";
+        public const string LogFile = @"C:\Log\{0}_{1}-{2}.txt";
+        #endregion
     }
 }
