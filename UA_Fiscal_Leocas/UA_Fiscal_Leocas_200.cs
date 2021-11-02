@@ -91,7 +91,7 @@ namespace UA_Fiscal_Leocas
             {
                 try
                 {
-                    printer.PrgTime();
+                    err = printer.PrgTime();
                     err = printer.RegUser(1, 1);
                     if (err != 0)
                         ErrorAnalizer(err);
@@ -122,7 +122,6 @@ namespace UA_Fiscal_Leocas
 
         public Result OpenTransaction(TransactionData transactionData)
         {
-            printer.PrgTime();
             Logger log = new Logger(MachineID);
             items = new List<Item>();
             inTransaction = true;
@@ -164,15 +163,14 @@ namespace UA_Fiscal_Leocas
                 Logger log = new Logger(MachineID);
                 log.Write($"FD  : Close Transaction");
                 printer.GetStatusEx();
-                printer.GetStatus();
                 StatusAnalizer();
                 string paymentTypeStr = "";
                 bool visaDiscount = false;
                 try
                 {
-                    printer.RegUser(1, 1);
-                    printer.ShiftBegin();
-                    uint err = printer.BegChk();
+                    uint err = printer.RegUser(1, 1);
+                    err = printer.ShiftBegin();
+                    err = printer.BegChk();
                     if (err != 0)
                         receiptClosed &= ErrorAnalizer(err);
                     if (payment.PaymentType == PaymentType.CreditCard)
@@ -182,27 +180,24 @@ namespace UA_Fiscal_Leocas
                         try
                         {
                             SQLConnect sql = new SQLConnect();
-                            printer.GetStatusEx();
-                            printer.GetStatus();
-                            StatusAnalizer();
-                            printer.TextChk("---Відповідь з банку----");
+                            err = printer.TextChk("---Відповідь з банку----");
                             string[] lines = sql.GetTransactionFromDBbyDevice(paymentMachineId, transaction).Split('\n');
                             for (int line = 0; line < lines.Length; line++)
                             {
                                 if (lines[line].Length > 1)
                                 {
-                                    printer.TextChkEx(lines[line]);
+                                    err = printer.TextChkEx(lines[line]);
                                 }
                             }
-                            printer.TextChk("------------------------");
+                            err = printer.TextChk("------------------------");
                         }
                         catch (Exception e)
                         {
-                            printer.TextChk("Відповідь не можна");
-                            printer.TextChk("роздрукувати.");
-                            printer.TextChkEx("Зверніться до адміністратора");
-                            printer.TextChk("за чеком.");
-                            printer.TextChk("------------------------");
+                            err = printer.TextChk("Відповідь не можна");
+                            err = printer.TextChk("роздрукувати.");
+                            err = printer.TextChkEx("Зверніться до адміністратора");
+                            err = printer.TextChk("за чеком.");
+                            err = printer.TextChk("------------------------");
                             log.Write($"FD  : Print bank response exception: {e.Message}");
                         }
                         #endregion
@@ -325,7 +320,6 @@ namespace UA_Fiscal_Leocas
                             log.Write($"TR  : Payment serialization: {paymentTypeStr} {sum}");
                         }
                         printer.GetStatusEx();
-                        printer.GetStatus();
                         StatusAnalizer();
                         inTransaction = false;
                         log.Write($"FD  : Transaction result: {deviceState.FiscalDeviceReady & receiptClosed}");
@@ -353,7 +347,6 @@ namespace UA_Fiscal_Leocas
                         ErrorAnalizer(err);
                     }
                     printer.GetStatusEx();
-                    printer.GetStatus();
                     StatusAnalizer();
                     StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, e.Message);
                     log.Write($"FD  : Exception for Close Transaction: {e.Message}");
@@ -426,10 +419,8 @@ namespace UA_Fiscal_Leocas
             bool receiptDone = true;
             inTransaction = true;
             printer.GetStatusEx();
-            printer.GetStatus();
-            printer.RegUser(1, 1);
-            printer.GetStatus();
             StatusAnalizer();
+            uint err = printer.RegUser(1, 1);
             UInt32 amount = 0;
             if (cash.Amount >= 0)
                 amount = Convert.ToUInt32(cash.Amount) * 100;
@@ -437,11 +428,11 @@ namespace UA_Fiscal_Leocas
                 amount = Convert.ToUInt32(-cash.Amount) * 100;
             try
             {
-                uint err = printer.BegChk();
+                err = printer.BegChk();
                 if (err != 0)
                     receiptDone = ErrorAnalizer(err);
-                printer.TextChk($"Платіжна станція: {MachineID}");
-                printer.TextChk($"Внесення з: {cash.Source}");
+                err = printer.TextChk($"Платіжна станція: {MachineID}");
+                err = printer.TextChk($"Внесення з: {cash.Source}");
                 if (deviceState.FiscalDeviceReady)
                 {
                     err = printer.InOut(1, 0, amount);
@@ -456,7 +447,6 @@ namespace UA_Fiscal_Leocas
                 }
                 log.Write($"FD  : CashIn amount: {cash.Amount} from source: {cash.Source.ToString()}, result: {deviceState.FiscalDeviceReady & receiptDone}");
                 printer.GetStatusEx();
-                printer.GetStatus();
                 StatusAnalizer();
                 if (deviceState.FiscalDeviceReady)
                 {
@@ -471,20 +461,18 @@ namespace UA_Fiscal_Leocas
                     if (err != 0)
                         ErrorAnalizer(err);
                     printer.GetStatusEx();
-                    printer.GetStatus();
                     StatusAnalizer();
                 }
             }
             catch (Exception e)
             {
-                uint err = printer.VoidChk();
+                err = printer.VoidChk();
                 receiptDone = false;
                 if (err != 0)
                     ErrorAnalizer(err);
                 log.Write($"FD  : CashIn exception: {e.Message}");
                 StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, e.Message);
                 printer.GetStatusEx();
-                printer.GetStatus();
                 StatusAnalizer();
                 inTransaction = false;
             }
@@ -497,7 +485,7 @@ namespace UA_Fiscal_Leocas
             Logger log = new Logger(MachineID);
             bool receiptDone = true;
             inTransaction = true;
-            printer.RegUser(1, 1);
+            uint err = printer.RegUser(1, 1);
             UInt32 amount = 0;
             if (cash.Amount >= 0)
                 amount = Convert.ToUInt32(cash.Amount) * 100;
@@ -505,11 +493,11 @@ namespace UA_Fiscal_Leocas
                 amount = Convert.ToUInt32(-cash.Amount) * 100;
             try
             {
-                uint err = printer.BegChk();
+                err = printer.BegChk();
                 if (err != 0)
                     receiptDone = ErrorAnalizer(err);
-                printer.TextChk($"Платіжна станція: {MachineID}");
-                printer.TextChk($"Вилучення з: {cash.Source}");
+                err = printer.TextChk($"Платіжна станція: {MachineID}");
+                err = printer.TextChk($"Вилучення з: {cash.Source}");
                 if (deviceState.FiscalDeviceReady & receiptDone)
                 {
                     err = printer.InOut(1, 1, amount);
@@ -541,7 +529,7 @@ namespace UA_Fiscal_Leocas
             }
             catch (Exception e)
             {
-                uint err = printer.VoidChk();
+                err = printer.VoidChk();
                 receiptDone = false;
                 if (err != 0)
                     ErrorAnalizer(err);

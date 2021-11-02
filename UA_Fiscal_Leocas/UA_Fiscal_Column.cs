@@ -168,8 +168,6 @@ namespace UA_Fiscal_Leocas
                 {
                     uint err = printer.Connect(connectionString);
                     log.Write($"FDAU: Connect: {err}");
-                    err = printer.PrgTime();
-                    log.Write($"FDAU: ProgTime: {err}");
                     err = printer.RegUser(1, 1);
                     err = printer.ShiftBegin();
                     err = printer.BegChk();

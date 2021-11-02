@@ -119,7 +119,6 @@ namespace UA_Fiscal_Leocas
 
         public Result OpenTransaction(TransactionData transactionData)
         {
-            uint err = printer.PrgTime();
             Logger log = new Logger(MachineID);
             items = new List<Item>();
             inTransaction = true;
