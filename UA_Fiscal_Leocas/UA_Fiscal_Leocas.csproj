@@ -76,6 +76,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="LeoCasFunction.cs" />
     <Compile Include="LeoCas_FiscalDevice.cs" />
+    <Compile Include="LostTransaction.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="StringValue.cs" />

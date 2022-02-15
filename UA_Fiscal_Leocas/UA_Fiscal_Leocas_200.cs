@@ -248,8 +248,13 @@ namespace UA_Fiscal_Leocas
                                 price = ((price / 2) >= 20000) ? (price - 20000) : (price / 2);
                             }
 
+
                             byte group = 1;
                             byte tax = 1;
+                            if(item.Id=="100")
+                            {
+                                tax = 2;
+                            }
                             string unit = item.QuantityUnit;
                             string name = item.Name;
                             log.Write($"FD  : Unit: {unit}, Item: {name}");
@@ -581,8 +586,10 @@ namespace UA_Fiscal_Leocas
                 if (deviceState.FiscalDeviceReady)
                 {
                     uint err = printer.RegUser(1, 1);
+                    
                     if (err != 0)
                         ErrorAnalizer(err);
+                    err = printer.PrgTime();
                 }
                 if (deviceState.FiscalDeviceReady)
                 {
@@ -886,6 +893,7 @@ namespace UA_Fiscal_Leocas
             if (LeoCasLib.blockedStatus)
             {
                 this.StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, "РРО заблоковано");
+                this.OnErrorOccurred(new ErrorOccurredEventArgs("РРО заблоковано", SkiDataErrorCode.DeviceError, false));
             }
             return 0;
         }

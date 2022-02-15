@@ -10,8 +10,11 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            Settings settings = new Settings();
-            Settings.SaveSettings(settings);
+            //Settings settings = new Settings();
+            //Settings.SaveSettings(settings);
+            DateTime dateToDisplay= DateTime.Now;
+            Console.WriteLine(dateToDisplay.ToString("O"));
+            Console.ReadKey();
         }
     }
 }

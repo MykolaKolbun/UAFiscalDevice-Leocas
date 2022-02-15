@@ -37,9 +37,17 @@ namespace FiscalServiceMenu
 
         private void FiscalServiceMenu_Load(object sender, EventArgs e)
         {
-            devices.Add(new Device(1, "Виїзд 41", "10.10.50.104:23000"));
-            devices.Add(new Device(2, "Виїзд 42", "10.10.50.105:23000"));
-            devices.Add(new Device(3, "Виїзд 43", "10.10.50.106:23000"));
+            devices.Add(new Device(1, "Виїзд T2", "10.79.2.141:23000"));
+            devices.Add(new Device(2, "Виїзд T3", "10.79.2.142:23000"));
+            devices.Add(new Device(3, "Виїзд T5", "10.79.2.143:23000"));
+            devices.Add(new Device(4, "Виїзд T10(1)", "10.79.2.144:23000"));
+            devices.Add(new Device(5, "Виїзд T10(2)", "10.79.2.145:23000"));
+            devices.Add(new Device(6, "Виїзд T11", "10.79.2.146:23000"));
+            devices.Add(new Device(7, "Виїзд T12", "10.79.2.147:23000"));
+            devices.Add(new Device(8, "Виїзд T13", "10.79.2.148:23000"));
+            devices.Add(new Device(9, "Виїзд T14", "10.79.2.149:23000"));
+            devices.Add(new Device(10, "Виїзд T15", "10.79.2.150:23000"));
+            devices.Add(new Device(11, "Виїзд T17", "10.79.2.151:23000"));
             printer = new LeoCasLib();
             timer1.Start();
             foreach (Device dev in devices)

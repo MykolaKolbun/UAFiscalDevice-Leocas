@@ -172,21 +172,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = RegUser(handle, user, pass);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = RegUser(handle, user, pass);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = RegUser(handle, user, pass);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -202,21 +202,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = PrintRep(this.handle, type);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = PrintRep(this.handle, type);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = PrintRep(this.handle, type);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -227,21 +227,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = BegChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = BegChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = BegChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -262,21 +262,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = NProd(this.handle, code, quant, price, group, tax, Truncate(unitStr, 3), Truncate(nameStr, 70));
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = NProd(this.handle, code, quant, price, group, tax, Truncate(unitStr, 3), Truncate(nameStr, 70));
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = NProd(this.handle, code, quant, price, group, tax, Truncate(unitStr, 3), Truncate(nameStr, 70));
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -287,21 +287,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = Oplata(this.handle, paymentType, sum);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = Oplata(this.handle, paymentType, sum);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = Oplata(this.handle, paymentType, sum);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -312,21 +312,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = EndChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = EndChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = EndChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -347,21 +347,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = VoidChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = VoidChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = VoidChk(this.handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -372,21 +372,21 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             if (handle != IntPtr.Zero)
             {
                 result = InOut(this.handle, paymentType, type, sum);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = InOut(this.handle, paymentType, type, sum);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = InOut(this.handle, paymentType, type, sum);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -427,22 +427,22 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
 
             if (handle != IntPtr.Zero)
             {
                 result = TextChk(handle, Truncate(textStr, 44));
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = TextChk(handle, Truncate(textStr, 44));
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = TextChk(handle, Truncate(textStr, 44));
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -453,22 +453,22 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
 
             if (handle != IntPtr.Zero)
             {
                 result = TextChkEx(handle, Truncate(textStr, 64));
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = TextChkEx(handle, Truncate(textStr, 64));
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = TextChkEx(handle, Truncate(textStr, 64));
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -489,22 +489,22 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             
             if (handle != IntPtr.Zero)
             {
                 result = SmenBegin(handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = SmenBegin(handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = SmenBegin(handle);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -525,22 +525,22 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             
             if (handle != IntPtr.Zero)
             {
                 result = CopyChk(handle, ID);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = CopyChk(handle, ID);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = CopyChk(handle, ID);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }
@@ -565,12 +565,12 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             
             if (handle != IntPtr.Zero)
             {
                 result = PrintFiscRep(handle, RepID, ZBeg, ZEnd, datBegUINT32, datEndUINT32);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             return result;
         }
@@ -600,22 +600,22 @@ namespace UA_Fiscal_Leocas
             var st = new StackTrace();
             var sf = st.GetFrame(0);
             var currentMethodName = sf.GetMethod();
-            Logger log = new Logger("Temp", "LeocasLib");
+            //Logger log = new Logger("Temp", "LeocasLib");
             
             if (handle != IntPtr.Zero)
             {
                 result = PrgTime(handle, pass, timeNowUInt32);
-                log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 0, result: {result.ToString()}");
             }
             if((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = PrgTime(handle, pass, timeNowUInt32);
-                log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 1, result: {result.ToString()}");
             }
             if ((handle != IntPtr.Zero) && result != 0 && result <= 5)
             {
                 result = PrgTime(handle, pass, timeNowUInt32);
-                log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
+                //log.Write(currentMethodName.ToString(), $"Attempt 2, result: {result.ToString()}");
             }
             return result;
         }

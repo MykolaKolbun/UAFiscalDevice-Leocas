@@ -64,7 +64,7 @@ namespace UA_Fiscal_Leocas
 
         public void Write(string mess)
         {
-            string dateTime = DateTime.Now.ToString("dd’-‘MM’-‘yy’T’HH’:’mm’:’ss.ff");
+            string dateTime = DateTime.Now.ToString("O");
             StreamWriter sw = new StreamWriter(FilePath, true, Encoding.UTF8);
             sw.WriteLine("{0}: {1}", dateTime, mess);
             sw.Close();
@@ -72,7 +72,7 @@ namespace UA_Fiscal_Leocas
 
         public void Write(string source, string mess)
         {
-            string dateTime = DateTime.Now.ToString("dd’-‘MM’-‘yy’T’HH’:’mm’:’ss.ff");
+            string dateTime = DateTime.Now.ToString("O");
             StreamWriter sw = new StreamWriter(FilePath, true, Encoding.UTF8);
             sw.WriteLine("{0}: method: {1} {2}", dateTime, source, mess);
             sw.Close();

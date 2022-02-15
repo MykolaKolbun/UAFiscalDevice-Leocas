@@ -792,12 +792,13 @@ namespace UA_Fiscal_Leocas
                         {
                             log.Write($"FDAU: Set Time -- -- -- -- -- -- -- ");
                             
-                            uint err = printer.Connect(connectionString);
-                            log.Write($"FDAU: Connect: {err}");
-                            err = printer.PrgTime();
-                            log.Write($"FDAU: ProgTime: {err}");
-                            printer.Disconnect();
-                            log.Write($"FDAU: Disconnect");
+                            //TODO uncomment this after Leocas confirmation
+                            //uint err = printer.Connect(connectionString);
+                            //log.Write($"FDAU: Connect: {err}");
+                            //err = printer.PrgTime();
+                            //log.Write($"FDAU: ProgTime: {err}");
+                            //printer.Disconnect();
+                            //log.Write($"FDAU: Disconnect");
                         }
                         catch(Exception ex)
                         {

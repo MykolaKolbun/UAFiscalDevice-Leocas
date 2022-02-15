@@ -18,6 +18,7 @@ namespace UA_Fiscal_Leocas
         public bool inTransaction = false;
         public bool transactionTimeOutExceed = false;
         private bool disposed;
+        bool timeSyncFlag = true;
         //public bool isReady = true;
         public StateInfo deviceState;
         public static bool shiftNotClosed = false;
@@ -923,8 +924,32 @@ namespace UA_Fiscal_Leocas
             TimeSpan endZRep = TimeSpan.Parse("23:58");
             TimeSpan startShift = TimeSpan.Parse("00:02");
             TimeSpan endShift = TimeSpan.Parse("00:04");
+            TimeSpan timeSync1 = TimeSpan.Parse("23:00");
+            TimeSpan timeSync2 = TimeSpan.Parse("23:05");
             TimeSpan now = DateTime.Now.TimeOfDay;
-            # region Automated End of Day
+            #region Set Time
+            if (!inTransaction)
+            {
+                if ((now >= timeSync1 && now <= timeSync2) && (timeSyncFlag))
+                {
+                    try
+                    {
+                        //uint err = printer.PrgTime();
+                        //timeSyncFlag = false;
+                        //log.Write($"FDAU: Time Sync result: {err}");
+                    }
+                    catch (Exception exc)
+                    {
+                        log.Write($"FDAU: Time Sync exception: {exc.Message}");
+                        StatusChangedEvent(false, (int)SkiDataErrorCode.DeviceError, exc.Message);
+                    }
+                }
+                else
+                { timeSyncFlag = true; }
+            }
+            #endregion
+
+            #region Automated End of Day
             if (!inTransaction)
             {
                 if (startZRep <= endZRep)
@@ -933,7 +958,6 @@ namespace UA_Fiscal_Leocas
                     {
                         try
                         {
-                            printer.PrgTime();
                             log.Write($"FDAU: Close shift");
                             uint err = printer.PrintRep(16);
                             if (err != 0)
@@ -981,7 +1005,6 @@ namespace UA_Fiscal_Leocas
                                 if(deviceState.FiscalDeviceReady)
                                     this.shiftStarted = true;
                             }
-                            printer.PrgTime();
                             if (deviceState.FiscalDeviceReady)
                             {
                                 Transaction tr = new Transaction();
@@ -1062,7 +1085,6 @@ namespace UA_Fiscal_Leocas
             paymentTimeoutTimer.Enabled = false;
             paymentTimeoutTimer.Elapsed -= OnPaymentTimeOutTimerEvent;
         }
-
         #endregion
     }
 }
